@@ -1,0 +1,37 @@
+.full{
+background-color: #0e0e0e;
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 100px;
+    color: #9d9d9d;
+}
+
+.message{
+        color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 100%;
+            padding: 8px 16px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+           
+}
+
+.button{
+    background-color: #0078d4;
+    color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 100%;
+        padding: 8px 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.head{
+    color: #9d9d9d;
+        cursor: pointer;
+            padding-left: 12px;
+            padding-right: 12px;
+            text-decoration: none;
+}
