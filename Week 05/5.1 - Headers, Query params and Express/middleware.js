@@ -8,7 +8,7 @@ app.use(function(req, res, next) {
         message: "You are not allowed"
     })
 })
-
+// azmi
 app.get("/sum", function(req, res) {
     console.log(req.name);
     const a = parseInt(req.query.a);
