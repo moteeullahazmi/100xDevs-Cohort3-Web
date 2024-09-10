@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+</body>
+<script>
+  async function fetchPost(){
+    const res =  await fetch(`https://pokeapi.co/api/v2/pokemon`)
+    const js =  await res.json()
+    console.log()
+    const div = document.querySelector("div");
+
+
+    for(let i=0; i<js.results.length; i++){
+  const para= document.createElement("p")
+  para.innerText = js.results[i].name
+  div.appendChild(para)
+    }
+  }
+
+  fetchPost()
+</script>
+</html>
