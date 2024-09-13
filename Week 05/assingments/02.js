@@ -5,10 +5,6 @@ app.use(express.json())
 
 let count = 0
 function logsMiddleware(req, res, next) {
-    const method = req.method;
-    const url = req.url;
-const currentTime = new Date();  // Try without toISOString()
-console.log(`Current time: ${currentTime}`);
 
     count = count + 1;
 
