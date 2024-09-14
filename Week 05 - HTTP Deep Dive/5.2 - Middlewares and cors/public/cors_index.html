@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <input type="text" id="a">
+    <input type="text" id="b">
+    <button onclick="sumData()">sum</button>
+    <div id="Result"></div>
+
+    <script >
+       async  function sumData(){
+       
+           const sum = await axios.post("http://localhost:3001/mul",
+           {
+             a : document.getElementById("a").value,
+             b : document.getElementById("b").value
+           })
+           Result = sum.data.mult
+            document.getElementById("Result").innerHTML= Result
+        }
+        
+    </script>
+</body>
+</html>
