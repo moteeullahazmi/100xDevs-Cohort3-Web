@@ -73,7 +73,7 @@ app.post("/signin",function (req,res){
 
 
 app.get("/me", (req, res) => {
-    const token = req.headers.token;
+    const token = req.header.token;
     const userDetails = jwt.verify(token, JWT_SECRET);
 
     const username =  userDetails.username;
