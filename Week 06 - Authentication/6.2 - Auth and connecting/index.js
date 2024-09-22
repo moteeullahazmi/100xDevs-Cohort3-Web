@@ -68,7 +68,6 @@ function auth(req,res,next){
     next()
     } else {
         res.jsom({
-            message:"You are not logged in:"
         })
     }
 }
