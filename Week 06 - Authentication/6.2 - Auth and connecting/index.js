@@ -12,7 +12,12 @@ app.get("/",(req,res)=>{
         message:"welcome"
     })
 })
-app.post("/signup", (req,res)=>{
+
+function logger (req,res,next){
+    console.log(req.method + "request came")
+    next();
+}
+app.post("/signup", logger, (req,res)=>{
     const username = req.body.username
     const password = req.body.password
 
@@ -29,7 +34,7 @@ app.post("/signup", (req,res)=>{
     })
 })
 
-app.post("/signin", (req,res) => {
+app.post("/signin", logger, (req,res) => {
      const username = req.body.username
      const password =  req.body.password
 
@@ -72,7 +77,9 @@ function auth(req,res,next){
     }
 }
 
-app.get("/me", auth, (req,res)=>{
+
+
+app.get("/me", logger,auth, (req,res)=>{
     
        let foundUser = null;
 
@@ -105,4 +112,6 @@ app.get("/me", auth, (req,res)=>{
 
     })
 
-app.listen(3000)
+app.listen(3000,
+    console.log("Server start")
+)
