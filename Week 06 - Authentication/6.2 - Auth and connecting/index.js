@@ -5,7 +5,7 @@ const JWT_SECRET = "azmi";
 const app = express();
 app.use(express.json());
 const users = [];
-
+// azmi
 // Serve the homepage
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
