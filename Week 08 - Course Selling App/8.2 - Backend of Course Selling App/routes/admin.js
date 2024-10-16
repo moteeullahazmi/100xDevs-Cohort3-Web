@@ -50,6 +50,8 @@ adminRouter.post("/signup", async function (req, res) {
 
 // user signin route
 adminRouter.post("/signin", async function (req, res) {
+
+
   const { email, password } = req.body;
   // password comparing
   const admin = await adminModel.findOne({
@@ -90,7 +92,6 @@ adminRouter.post("/course", adminMiddleware, async(req, res)=>{
     });
     res.json({
       message: "Course created",
-      courseId: course._id
     });
   }catch(error){
 
@@ -98,29 +99,73 @@ adminRouter.post("/course", adminMiddleware, async(req, res)=>{
 })
 
 adminRouter.put("/course", adminMiddleware, async (req,res)=>{
-  const adminId = req.adminId;
+ try{
+   const adminId = req.adminId;
+   const { title, description, price, imageurl, courseId } = req.body;
 
-  const {title, description, price, imageurl, courseId } = req.res;
-  
-  const course = await courseModel.findOneAndUpdate({
-    _id : courseId,
-    creatorId: adminId
-  },{
-    title,
-    description,
-    price,
-    imageurl
-  })
+   const course = await courseModel.findOneAndUpdate(
+     {
+       _id: courseId,
+       creatorId: adminId,
+     },
+     {
+       title,
+       description,
+       price,
+       imageurl,
+     }
+   );
+   if(!course){
+    res.json({
+      message: "Your are not creator this course using courseID",
+    });
+   } else{
+    res.json({
+      message: "Course Update"
+    })
+   }
+ }
+ catch(error){
   res.json({
-    message:"Course Updated",
-    course
-  
+    error
   })
+ }
 })
 
+// delete course
+adminRouter.delete("/course", adminMiddleware, async (req, res) => {
+ try{
+     const adminId = req.adminId;
+     const courseId = req.body.courseId;
 
-// course check 
-adminRouter.get("/course/bulk", adminMiddleware, async (req, res)=>{
+     const course = await courseModel.findOne({
+       _id: courseId,
+       creatorId: adminId,
+     });
+     if (!course) {
+      return res.json({
+         message: "course not found",
+       });
+     }
+
+     // delete the course with geiven courseId and creator Id
+     await courseModel.deleteOne({
+       _id: courseId,
+       creatorId: adminId,
+     });
+
+     res.status(200).json({
+       message: "Course Deleted",
+     });
+ }catch(error){
+  res.json({
+    error
+  });
+ }
+})
+
+// define admin routes for getting all courses 
+adminRouter.get("/course", adminMiddleware, async (req, res)=>{
   const adminId = req.adminId;
 
   const courses = await courseModel.find({

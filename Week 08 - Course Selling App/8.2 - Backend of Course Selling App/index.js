@@ -14,7 +14,7 @@ const { adminRouter } = require("./routes/admin")
 const {model} = require("./models/model")
 
 
-// defin router
+// define router
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/course" , courseRouter)
 app.use("/api/v1/admin", adminRouter)

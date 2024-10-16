@@ -1,20 +1,21 @@
 const jwt = require("jsonwebtoken")
 const JWT_USER_SECRET = "User_secret";
 function userMiddleware (req,res,next){
-    const token = req.headers.token;
+    try{
+            const token = req.headers.token;
     // token decoded
     const decoded = jwt.verify(token,JWT_USER_SECRET);
     if(decoded){
         req.userId = decoded.id;
-        next()
+        next();
     }
-    else{
+    }catch(error){
         res.status(403).json({
-            message:"You are not signed in"
-        })
+          message: "JSON token not cerify",
+        });
     }
 }
 
 module.exports = {
-    userMiddleware
+    userMiddleware,
 }
