@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button" onclick="onButtonPress()"> Counter 0 </button>
+</body>
+<script>
+    function onButtonPress(){
+
+        // store a value inside button
+        const currentValue = document.getElementById("button").innerText;
+
+        // split value with from space to divide two part counter + 1 and store in array form  => [counter,1]
+        const currentCounter = currentValue.split(" ")[1];
+        
+        // convert string into parse
+        const newCounter = parseInt(currentCounter) +1;
+        
+        // and change value button button 
+        document.getElementById("button").innerText = "Counter " + newCounter
+    }
+</script>
+</html>
