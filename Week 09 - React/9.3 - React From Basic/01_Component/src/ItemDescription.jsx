@@ -5,7 +5,7 @@ function ItemDescription({ name,description,price }) {
       <h6>
         <i>{description}</i>
       </h6>
-      {/* heading */}
+      
       <b>{price}</b>
     </>
   );
