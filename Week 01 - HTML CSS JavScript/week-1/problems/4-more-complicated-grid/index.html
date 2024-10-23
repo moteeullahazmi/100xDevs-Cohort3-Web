@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: grid;
+            grid-template-columns: 1fr 2fr;
+            margin: 10px 60px;
+            gap: 10px;
+            ">
+    
+        <div style="
+            background-color: red;
+            
+            ">
+            <h1>Left</h1>
+            <h3>Text Text Text Text Text Text Text Text</h3>
+        </div>
+
+        <div style="
+            
+            background-color: blue;
+           
+
+            ">
+            <div style="display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr;
+                grid-template-areas: 
+                'r1 r4 r7'
+                'r2 r5 r8'
+                'r3 r6 r9';">
+            <h1 style="grid-area: r1;">Col 1</h1>
+            <h1 style="grid-area: r2;">Col 1</h1>
+            <h1 style="grid-area: r3;">Col 1</h1>
+            <h1 style="grid-area: r4;">Col 2</h1>
+            <h1 style="grid-area: r5;">Col 2</h1>
+            <h1 style="grid-area: r6;">Col 2</h1>
+            <h1 style="grid-area: r7;">Col 3</h1>
+            <h1 style="grid-area: r8;">Col 3</h1>
+            <h1 style="grid-area: r9;">Col 3</h1>
+            </div>
+            
+        </div>
+</body>
+</html>

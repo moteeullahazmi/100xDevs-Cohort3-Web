@@ -1,0 +1,14 @@
+#container{
+    display: grid;
+    grid-template-columns: 60% 10% 10% 10% 10%;
+    grid-template-rows: 60% 10% 10% 10% 10%;
+    background-color: aqua;
+   height: 100px;
+    align-items: center;
+    justify-items: center;
+    
+}
+
+#main{
+   justify-self: start;
+}
