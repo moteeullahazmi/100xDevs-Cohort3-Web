@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Dynamic Form Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #preview {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 50px;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dynamic Form Builder</h1>
+    <form id="form-builder">
+        <label for="input-type">Select Input Type:</label>
+        <select id="input-type">
+            <option value="text">Text Input</option>
+            <option value="checkbox">Checkbox</option>
+            <option value="radio">Radio Button</option>
+        </select>
+        <input type="text" id="input-label" placeholder="Label for the field" required>
+        <button type="button" id="add-field">Add Field</button>
+    </form>
+
+    <h2>Preview</h2>
+    <div id="preview"></div>
+
+    <script>
+        document.getElementById('add-field').addEventListener('click', function () {
+            const inputType = document.getElementById('input-type').value;
+            const inputLabel = document.getElementById('input-label').value;
+
+            let inputElement;
+
+            if (inputType === 'text') {
+                inputElement = document.createElement('input');
+                inputElement.type = 'text';
+                inputElement.placeholder = inputLabel;
+            } else if (inputType === 'checkbox') {
+                inputElement = document.createElement('input');
+                inputElement.type = 'checkbox';
+                const label = document.createElement('label');
+                label.textContent = inputLabel;
+                label.prepend(inputElement);
+                document.getElementById('preview').appendChild(label);
+                return; // Return early for checkboxes
+            } else if (inputType === 'radio') {
+                inputElement = document.createElement('input');
+                inputElement.type = 'radio';
+                const label = document.createElement('label');
+                label.textContent = inputLabel;
+                label.prepend(inputElement);
+                document.getElementById('preview').appendChild(label);
+                return; // Return early for radio buttons
+            }
+
+            // For text inputs
+            const label = document.createElement('label');
+            label.textContent = inputLabel;
+            label.prepend(inputElement);
+            document.getElementById('preview').appendChild(label);
+        });
+    </script>
+</body>
+
+</html>
