@@ -1,21 +1,70 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width">
-	  <title>replit</title>
-	  <link href="style.css" rel="stylesheet" type="text/css" />
-	</head>
-	
-	<body>
-	  <h1>Todo list</h1>
-	  <h4>1. Take class</h4>
-	  <h4>2. Go out to eat</h4>
-	  <div>
-	    <input type="text" id="writetext"></input>
-	    <button onclick="add()">Add Todo</button>
-	  </div>
-	  <script src="script.js"></script>
-	</body>
-	
+
+<head>
+	<meta charset="utf-8"> <!-- Sets the character encoding for the document -->
+	<meta name="viewport" content="width=device-width"> <!-- Ensures proper rendering on mobile devices -->
+	<title>replit</title> <!-- Title of the webpage, shown in the browser tab -->
+
+</head>
+
+<body>
+	<h1>Todo List</h1> <!-- Main heading of the page -->
+
+	<h2>
+		<ol id="olList"> <!-- Ordered list for displaying todo items -->
+			<li id="azmi">Go To GYM<span onclick="removeItem(this)">❌</span></li>
+			<!-- Example todo item with a delete button -->
+			<li>Go to Sleep<span onclick="removeItem(this)">❌</span></li> <!-- Another example todo item -->
+		</ol>
+		<input type="text" placeholder="Add Text" id="inputText"> <!-- Input field for adding new todo items -->
+		<button onclick="add()">
+			<h5>Add Button</h5>
+		</button> <!-- Button to add the new todo item -->
+		<button onclick="clearAll()"> <!-- Button to clear all todo items -->
+			<h5>Clear All</h5>
+		</button>
+	</h2>
+
+	<script>
+		// Function to add a new item to the todo list
+		function add() {
+			// Get the value of the input field
+			let inputText = document.getElementById("inputText").value;
+
+			// Create a new <li> element
+			let newItem = document.createElement("li");
+			
+			console.log(newItem);
+			// Set the inner HTML of the new item to the input text and add a delete button
+			newItem.innerHTML = `${inputText} <span onclick="removeItem(this)"> ❌</span>`;
+			
+
+			// Get the list element where the new item will be added
+			let olList = document.getElementById("olList");
+			// Append the new item to the list
+			olList.appendChild(newItem);
+
+			// Clear the input field after adding the item
+			document.getElementById("inputText").value = "";
+		}
+
+		// Function to clear all items from the todo list
+		function clearAll() {
+			// Get the list element
+			let list = document.getElementById("olList");
+			// Clear all inner HTML (removes all items)
+			list.innerHTML = "";
+		}
+
+		// Function to remove a specific item from the list
+		function removeItem(azmi) {
+			// Remove the parent <li> of the clicked <span>
+				
+				
+			azmi.parentElement.remove();
+		}
+	</script>
+</body>
+
 </html>

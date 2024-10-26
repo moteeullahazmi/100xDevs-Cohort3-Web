@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Changer</title>
+    <style>
+        body {
+            transition: background-color 0.3s ease;
+            /* Smooth transition for background color change */
+        }
+
+        #colorButtons {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            /* Space between buttons and input */
+        }
+
+        button {
+            margin-right: 10px;
+            /* Space between buttons */
+            padding: 10px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 10px;
+            margin-right: 10px;
+            /* Space between input and button */
+        }
+    </style>
+</head>
+
+<body id="backgroundBody" style="background-color: lightblue;">
+
+    <div id="colorButtons">
+        <button id="red" style="background-color: red;" onclick="changeColor('red')">Red</button>
+        <button id="yellow" style="background-color: yellow;" onclick="changeColor('yellow')">Yellow</button>
+        <button id="black" style="background-color: black;" onclick="changeColor('black')">Black</button>
+        <button id="purple" style="background-color: purple;" onclick="changeColor('purple')">Purple</button>
+        <button id="green" style="background-color: green;" onclick="changeColor('green')">Green</button>
+        <button id="blue" style="background-color: blue;" onclick="changeColor('blue')">Blue</button>
+        <button id="default" style="background-color: lightblue;" onclick="changeColor('lightblue')">Default</button>
+    </div>
+
+    <input type="text" id="customColorInput" placeholder="Enter a color name or hex code">
+    <button onclick="addCustomColor()" style="color: black;">Add Custom Color</button>
+
+    <script>
+        function changeColor(color) {
+            document.getElementById("backgroundBody").style.backgroundColor = color;
+        }
+
+        function addCustomColor() {
+            const colorInput = document.getElementById('customColorInput').value;
+            if (colorInput) {
+                // Set the background color to the custom input
+                document.getElementById("backgroundBody").style.backgroundColor = colorInput;
+                document.getElementById('customColorInput').value = ''; // Clear the input field
+            } else {
+                alert("Please enter a color name or hex code."); // Alert if input is empty
+            }
+        }
+    </script>
+
+</body>
+
+</html>
