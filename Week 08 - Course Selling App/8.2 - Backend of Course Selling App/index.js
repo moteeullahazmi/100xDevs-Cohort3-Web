@@ -2,7 +2,8 @@
 const express =  require("express")
 const mongoose = require("mongoose")
 const app = express();
-
+const dotenv = require("dotenv");
+dotenv.config()
 
 app.use(express.json())
 // import router
@@ -20,7 +21,7 @@ app.use("/api/v1/course" , courseRouter)
 app.use("/api/v1/admin", adminRouter)
 
 try{
-    mongoose.connect("mongodb+srv://100xdevs:WvaTca0509mb90YX@cluster0.ossjd.mongodb.net/Azmi_Course_Selling_App")
+    mongoose.connect(process.env.MONGO_URL)
     console.log("Server Connected")
     app.listen(3000,()=> {
         console.log("server running on port 3000")
