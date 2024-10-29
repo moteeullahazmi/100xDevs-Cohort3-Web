@@ -1,12 +1,14 @@
 const express = require("express")
 const app = express()
-
+const dotenv = require("dotenv")
+dotenv.config()
 const jwt = require("jsonwebtoken")
 const {auth,JWT_SECRET} =  require("./auth")
 
+console.log(process.env.MONGO_URL)
 // mongoose 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://100xdevs:WvaTca0509mb90YX@cluster0.ossjd.mongodb.net/Moteeullah-Azmi-data")
+mongoose.connect(process.env.MONGO_URL);
 
 // importing schema
 const {UserModel,TodoModel} = require("./db")
