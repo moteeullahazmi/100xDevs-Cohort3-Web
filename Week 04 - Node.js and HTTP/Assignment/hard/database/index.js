@@ -15,10 +15,12 @@ const UserSchema = new mongoose.Schema({
 });
 
 const TodoSchema = new mongoose.Schema({
-    // Schema definition here
-    title:String,
-    description:String,
-    complete: Boolean
+  // Schema definition here
+  id: ObjectId,
+  title: String,
+  description: String,
+  complete: Boolean,
+  userId: ObjectId
 });
 
 const User = mongoose.model('User', UserSchema);
