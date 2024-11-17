@@ -1,20 +1,9 @@
 import  { useEffect, useState } from 'react';
-import { useFetchDataDummy } from './hook/useFetchDataDummy';
+
+import { useFetch } from './hook/useFetch';
 
 
-// create hook 
-function useCounter(){
-  const [count, setCount] = useState(0);
-  function increaseButton(){
-    setCount(count+1);
-  }
 
-  // return in object
-  return {
-    count:count,
-    increaseButton:increaseButton
-  }
-}
 
 const App = () => {
 
@@ -22,30 +11,36 @@ const App = () => {
   return (
     <div>
       
-      <Counter/>
-      <FetchDataDummy/>
+     
+
+      <FetchData/>
     </div>
   )
 }
 
-function Counter(){
-  const {count,increaseButton} = useCounter(); 
-  return <div>
-  
-      <button onClick={increaseButton}>Increase {count}</button>
-  </div>
+function FetchData() {
+  const [postChange, setPostChange] = useState(1)
+    const { dataInput, loading } = useFetch("https://jsonplaceholder.typicode.com/posts/" +postChange);
+
+    if(loading){
+      return <h1>
+        Loading
+      </h1>
+    }
+
+    return (
+        <div>
+        
+        <button onClick={()=>setPostChange(1)}>1</button>
+        <button onClick={()=>setPostChange(2)}>2</button>
+        <button onClick={()=>setPostChange(3)}>3</button>
+            {JSON.stringify(dataInput)}
+        </div>
+    );
 }
 
 
-function FetchDataDummy() {
-  const {todo} = useFetchDataDummy();
 
-  return(
-    <div>
-      {todo ? todo : <>...loading</>}
-    </div>
-  )
-}
 
 
 
