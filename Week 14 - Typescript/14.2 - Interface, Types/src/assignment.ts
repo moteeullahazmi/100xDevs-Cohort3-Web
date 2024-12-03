@@ -1,17 +1,15 @@
-type Userr ={
+interface Userr {
     username: string;
-    password : string;
+    age : string;
 }
 
-type Adminn = {
+interface Adminn {
     username: string;
+    permession : string
 }
 
 type typeBoths=  Userr | Adminn;
 
-const adminnnn:typeBoths = {
-    username : "Moteeullah Azmi",
-    password : "Azmi"
+function greeet(adminB :typeBoths){
+    console.log(adminB.username)
 }
-
-console.log("Welcome " + adminnnn.username)
