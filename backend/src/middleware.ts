@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express"
 import jwt from "jsonwebtoken"
-import { JWT_PASSWORD } from "./config"
+import 'dotenv/config'
 
 
 export const userMiddleware = (req: Request, res: Response, next: NextFunction) =>{
     const header = req.headers["authorization"];
-    const decoded = jwt.verify(header as string,JWT_PASSWORD);
+    const decoded = jwt.verify(header as string,process.env.JWT_PASSWORD as string);
 
     try {
         if(decoded){

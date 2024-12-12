@@ -2,8 +2,12 @@ import mongoose, {model, Schema} from "mongoose"
 import 'dotenv/config'
 
 
-mongoose.connect(process.env.MONGO_URL as string)
-console.log("Mongo Server Connected");
+try {
+    mongoose.connect(process.env.MONGO_URL as string)
+} catch (error) {
+    console.log(error)
+}
+
 
 // UserSchema
 const UserSchema = new Schema({

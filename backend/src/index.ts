@@ -1,8 +1,9 @@
+import 'dotenv/config'
 import express from "express";
 import { UserModel, ContentModel } from "./db";
 import z from "zod";
 import jwt from "jsonwebtoken";
-import { JWT_PASSWORD } from "./config"
+
 import { userMiddleware } from "./middleware";
 
 
@@ -50,7 +51,7 @@ app.post("/api/v1/signin", async (req, res) => {
         if (existingUser) {
             const token = jwt.sign({
                 id: existingUser._id
-            }, JWT_PASSWORD)
+            }, process.env.JWT_PASSWORD as string)
             res.json({
                 token: token
             })
@@ -67,6 +68,7 @@ app.post("/api/v1/signin", async (req, res) => {
         })
     }
 }
+
 )
 
 // Post Content
@@ -146,3 +148,5 @@ app.get("/api/v1/brain/:shareLink", () => {
 app.listen(4000, () => {
     console.log("server is start port Number is : 4000")
 })
+
+
