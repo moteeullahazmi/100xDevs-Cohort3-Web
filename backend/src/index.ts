@@ -1,10 +1,10 @@
 import 'dotenv/config'
 import express from "express";
-import { UserModel, ContentModel } from "./db";
-import z from "zod";
+import { UserModel, ContentModel, LinkModel } from "./db";
+import z, { string } from "zod";
 import jwt from "jsonwebtoken";
-
 import { userMiddleware } from "./middleware";
+import { random } from './utils';
 
 
 const app = express();
@@ -120,27 +120,85 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
     const contentId = req.body.contentId;
     try {
         await ContentModel.deleteMany({
-            _id:contentId,
+            _id: contentId,
             // @ts-ignore
             userId: req.userId
         })
         res.json({
-            message:"Delete Successful",contentId
+            message: "Delete Successful", contentId
         })
-    } catch (error:any) {
+    } catch (error: any) {
         res.json({
             message: error.message
         })
     }
 })
 
-// sharable link
-app.post("/api/v1/brain/share", () => {
-
+// sharable post link
+app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
+    const share = req.body.share;
+    if (share) {
+        try {
+            const hash = random(10)
+            await LinkModel.create({
+                //@ts-ignore
+                userId: req.userId,
+                hash: hash
+                //blog.com/share/dkslfjd997
+            })
+            res.json({
+                message: "share/" + hash
+            })
+        } catch (error: any) {
+            res.json({
+                message: error.message
+            })
+        }
+    } else {
+        await LinkModel.deleteOne({
+            // @ts-ignore
+            userId: req.userId
+        })
+        res.json({
+            message: "Removed Link"
+        })
+    }
 })
 
 // fetch user share details about
-app.get("/api/v1/brain/:shareLink", () => {
+app.get("/api/v1/brain/:shareLink", async (req, res) => {
+    const hash = req.params.shareLink
+
+    const link = await LinkModel.findOne({
+        hash,
+    });
+
+    if (!link) {
+        res.status(411).json({
+            message: "Sorry Incorrect Input"
+        })
+        return; //return if you not use else
+    }
+    // userId
+    const content = await ContentModel.find({
+        userId: link.userId
+    })
+
+    const user = await UserModel.findOne({
+        _id: link.userId
+    })
+
+    if(!user){
+        res.status(411).json({
+            message: "User not found, error should ideally not happen"
+        })
+    }
+
+    res.json({
+        username: user?.username,
+        content: content
+    })
+
 
 })
 
