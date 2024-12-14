@@ -17,7 +17,7 @@ export const Card = ({ title, link, type }: CardProps) => {
                 <ShareIcon />
               </a>
             </div>
-            Project ideas
+            {title}
           </div>
           <div className="flex items-center">
             <div className="pr-2 text-gray-500">
