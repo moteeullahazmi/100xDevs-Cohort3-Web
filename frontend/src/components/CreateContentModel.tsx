@@ -3,7 +3,7 @@ import Button from "./Button";
 import Input from "./Input";
 
 // controlled component
-const CreateContentModel = ({ open, onClose }) => {
+const CreateContentModel = ({ open, onClose }:{open:any; onClose:any}) => {
   return (
     <div>
       {open && (

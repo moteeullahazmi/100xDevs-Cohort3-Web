@@ -5,10 +5,12 @@ import z, { string } from "zod";
 import jwt from "jsonwebtoken";
 import { userMiddleware } from "./middleware";
 import { random } from './utils';
+import cors from "cors";
 
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 // signup
 // Todo: ZOD, Hash, crash
@@ -188,7 +190,7 @@ app.get("/api/v1/brain/:shareLink", async (req, res) => {
         _id: link.userId
     })
 
-    if(!user){
+    if (!user) {
         res.status(411).json({
             message: "User not found, error should ideally not happen"
         })
