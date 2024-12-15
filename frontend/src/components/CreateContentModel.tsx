@@ -78,6 +78,7 @@ const CreateContentModel = ({ open, onClose }: { open: any; onClose: any }) => {
                   onClick={createcontent}
                   variant="primary"
                   text={"Submit"}
+                  
                 />
               </div>
             </span>

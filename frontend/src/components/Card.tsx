@@ -29,6 +29,11 @@ export const Card = ({ title, link, type }: CardProps) => {
           </div>
         </div>
         <div className="pt-4">
+          {type === "twitter" && (
+            <blockquote className="twitter-tweet">
+              <a href={link.replace("x", "twitter")}></a>
+            </blockquote>
+          )}
           {type === "youtube" && (
             <iframe
               className="w-full"
@@ -39,12 +44,6 @@ export const Card = ({ title, link, type }: CardProps) => {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-          )}
-
-          {type === "twitter" && (
-            <blockquote className="twitter-tweet">
-              <a href={link.replace("x", "twitter")}></a>
-            </blockquote>
           )}
         </div>
       </div>
