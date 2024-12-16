@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
 
@@ -17,7 +17,7 @@ const Signup = () => {
       username,
       password,
     });
-    navigate("/signin")
+    navigate("/signin");
     alert("You have singed up!");
   }
 

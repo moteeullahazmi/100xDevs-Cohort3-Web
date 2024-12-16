@@ -22,8 +22,8 @@ const CreateContentModel = ({ open, onClose }: { open: any; onClose: any }) => {
     await axios.post(
       `${BACKEND_URL}/api/v1/content`,
       {
-        link,
         title,
+        link,
         type,
       },
       {
@@ -32,14 +32,18 @@ const CreateContentModel = ({ open, onClose }: { open: any; onClose: any }) => {
         },
       }
     );
+    onClose();
   }
   return (
     <div style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}>
       {open && (
         <div className="w-screen h-screen bg-black fixed top-0 left-0 opacity-70 flex justify-center items-center">
-          <div className="flex flex-col justify-center" style={{
+          <div
+            className="flex flex-col justify-center"
+            style={{
               boxShadow: "0 10px 15px rgba(0, 0, 0, 0.2)", // Soft shadow for focus effect
-            }}>
+            }}
+          >
             <span className="bg-white p-6 rounded shadow-2xl opacity-100">
               <div className="flex justify-end">
                 <div onClick={onClose} className="cursor-pointer">
@@ -47,8 +51,8 @@ const CreateContentModel = ({ open, onClose }: { open: any; onClose: any }) => {
                 </div>
               </div>
               <div>
-                <Input placeholder={"Title"} />
-                <Input placeholder={"Link"} />
+                <Input ref={titleRef} placeholder={"Title"} />
+                <Input ref={linkRef} placeholder={"Link"} />
               </div>
               <div>
                 <h1 className="font-bold text-lg">Types</h1>
@@ -78,7 +82,6 @@ const CreateContentModel = ({ open, onClose }: { open: any; onClose: any }) => {
                   onClick={createcontent}
                   variant="primary"
                   text={"Submit"}
-                  
                 />
               </div>
             </span>

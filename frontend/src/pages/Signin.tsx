@@ -18,9 +18,9 @@ const Signin = () => {
       username,
       password,
     });
-   const jwt =  response.data.token;
-   localStorage.setItem("token",jwt);
-   navigate("/dashboard")
+    const jwt = response.data.token;
+    localStorage.setItem("token", jwt);
+    navigate("/dashboard");
   }
   return (
     <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
