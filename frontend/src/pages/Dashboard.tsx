@@ -8,11 +8,14 @@ import Sidebar from "../components/Sidebar";
 import { useContent } from "../hooks/useContents";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
+import { useNavigate } from "react-router";
+
+
 
 const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { contents, refresh } = useContent();
-
+  const navigate = useNavigate()
   useEffect(() => {
     refresh();
   }, [modalOpen]);
@@ -48,6 +51,10 @@ const Dashboard = () => {
             text="Share Brain"
             startIcon={<ShareIcon />}
           />
+          <Button onClick={()=>{
+            localStorage.removeItem("token"); 
+            navigate("/signin");
+          }} text="Logout" variant="primary"/>
         </div>
 
         <div className="flex gap-4 flex-wrap">
