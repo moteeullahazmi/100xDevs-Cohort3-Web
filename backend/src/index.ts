@@ -77,15 +77,17 @@ app.post("/api/v1/signin", async (req, res) => {
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     const link = req.body.link;
     const type = req.body.type;
+    const title = req.body.title;
     try {
-        await ContentModel.create({
+      const content =   await ContentModel.create({
             link,
             type,
+            title,
             // @ts-ignore
             userId: req.userId
         })
         res.json({
-            message: "Content added"
+            message: "Content added", content
         })
     } catch (error: any) {
         console.log(error)
